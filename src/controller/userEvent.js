@@ -16,6 +16,7 @@ module.exports.login=async(req,res)=>{
     try{
         const userli=await user.findByCredentials(req.body.email,req.body.password)
         if(!userli){
+            console.log("Invalid Credentials");
             return res.send("Invalid credentials")
         }
         res.status(200).send(userli)
