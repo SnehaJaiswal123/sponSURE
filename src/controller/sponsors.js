@@ -16,10 +16,13 @@ module.exports.listevents=async(req,res)=>{
 
 module.exports.createsponsor=async(req,res)=>{
     try{
-        const mysponsor= new sponsors(req.body)
-        await mysponsor.save()
-        console.log("created");
-        res.send(mysponsor)
+        const newSponsor=new sponsors({
+            ...req.body,
+            owner:req.user._id
+        })
+        await newSponsor.populate('owner')
+        console.log(newSponsor.owner);
+        res.send(newSponsor)
     }
     catch(e){
         console.log(e);

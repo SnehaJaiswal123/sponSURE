@@ -1,44 +1,44 @@
-const mongoose=require('../connect/db.js')
+import mongoose from "mongoose";
 
-const Sponsor=mongoose.Schema({
-     cname:{
-        type:String,
-        required:true
-     },
-     info:{
-        type:String,
-        required:true
-     },
-     email:{
-        type:String,
-        required:true
-     },
-     minFund:{
-        type:Number,
-        required:true,
-     },
-     evaluation:{
-        type:Number,
-        required:true
-     },
-     eventsponsored:{
-        type:Number,
-        required:true
-     },
-     website:{
-      type:String,
-      required:true
-     },
-     linkedin:{
-      type:String,
-      required:true
-     },
-     contact:{
-      type:String,
-      required:true
-     }
-})
+const sponsorProfileSchema = new mongoose.Schema(
+{
+  userId: { 
+   type: mongoose.Schema.Types.ObjectId, 
+   ref: "User", 
+   required: true 
+  },
+  companyName: { 
+   type: String, 
+   required: true 
+  },
+  website: { 
+   type: String 
+  },
+  industry: { 
+   type: String 
+  },
+  minAmount: { 
+   type: Number,
+   required:true
+  },
+  maxAmount: { 
+   type: Number,
+   required:true
+  },
+  preferredCategories: [{ 
+   type: String 
+  }],
+  pastSponsoredEvents: { 
+   type: Number, 
+   default: 0 
+  },
+  description: { 
+   type: String 
+  }
+},
+{
+   timestamps:true
+}
+);
 
-const Sponsors=new mongoose.model('sponsors',Sponsor)
-
-module.exports=Sponsors;
+export default mongoose.model("SponsorProfile", sponsorProfileSchema);

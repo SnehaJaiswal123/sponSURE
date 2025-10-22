@@ -1,9 +1,9 @@
 const express=require('express')
-const multer=require('multer')
 const router=express.Router()
 const Sponsors=require('../controller/sponsors')
+const auth=require('../middleware/auth')
 
-router.post('/createsponsor',Sponsors.createsponsor)
+router.post('/createsponsor',auth,Sponsors.createsponsor)
+router.get('/listevents',auth,Sponsors.listevents)
 
-router.get('/listevents',Sponsors.listevents)
-module.exports=router
+module.exports=router;

@@ -1,12 +1,17 @@
 const events=require('../model/events')
 const sponsors=require('../model/sponsors')
+const User=require('../model/user')
 
 module.exports.createevent=async(req,res)=>{
     try{
-        const myevent= new events(req.body)
-        await myevent.save()
-        console.log("event created");
-        res.send(myevent)
+        const newEvent=new events({
+            ...req.body,
+            owner:req.user._id
+        })
+        await newEvent.save()
+        await newEvent.populate('owner')
+        console.log(newEvent.owner);
+        res.send(newEvent)
     }
     catch(e){
         console.log(e);
