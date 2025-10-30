@@ -145,13 +145,6 @@ const getEventDetails = async (req,res) => {
       })
     }
 
-    if(!eventId){
-      return res.status(401).json({
-        success:false,
-        message:"Event Id is required"
-      })
-    }
-
     const event = await Event.findById(eventId);
 
     return res.status(200).json({
@@ -172,7 +165,7 @@ const getEventSponsors = async () => {
   
 }
 
-module.export = {
+module.exports = {
   createEvent,
   updateEvent,
   deleteEvent,

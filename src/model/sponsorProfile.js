@@ -28,10 +28,6 @@ const sponsorProfileSchema = new mongoose.Schema(
   preferredCategories: [{ 
    type: String 
   }],
-  pastSponsoredEvents: { 
-   type: Number, 
-   default: 0 
-  },
   description: { 
    type: String 
   }
@@ -41,4 +37,6 @@ const sponsorProfileSchema = new mongoose.Schema(
 }
 );
 
-export default mongoose.model("SponsorProfile", sponsorProfileSchema);
+const SponsorProfile = mongoose.model("SponsorProfile", sponsorProfileSchema);
+
+export default SponsorProfile
