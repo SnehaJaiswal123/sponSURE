@@ -1,4 +1,5 @@
 const User = require('../model/user');
+const Organizer = require('../model/organiser');
 
 const register = async (req,res) =>{
     try {
@@ -18,6 +19,10 @@ const register = async (req,res) =>{
                 success:false,
                 message:"user with this email exist"
             }) 
+        }
+
+        if(role==='organizer'){
+            await Organizer.create({email})
         }
 
         const newUser = await User.create(req.body);

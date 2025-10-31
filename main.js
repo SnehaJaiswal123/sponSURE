@@ -12,10 +12,12 @@ app.use(express.urlencoded({extended:true}))
 const userRouter = require('./src/routes/user')
 const eventRouter = require('./src/routes/events')
 const sponsorRouter = require('./src/routes/sponsors')
+const organizerRouter = require('./src/routes/sponsors')
 
 app.use('/user',userRouter)
 app.use('/event',eventRouter)
 app.use('/sponsor',sponsorRouter)
+app.use('/organizer',organizerRouter)
 
 app.listen(5000,()=>{
     console.log("server is running");
